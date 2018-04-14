@@ -5,18 +5,23 @@ import java.util.Map;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class BaseController {
 	@Value("${name}")
 	private String name;
 	@RequestMapping("/")
     String home() {
         return "hello "+name;
+    }
+	@RequestMapping("/index")
+    String index() {
+        return "index";
     }
 	@RequestMapping(value="/verify",method=RequestMethod.GET)
     String verify(@RequestParam Map<String,Object> params) {
